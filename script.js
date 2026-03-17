@@ -1,9 +1,8 @@
-import "./styles.css";
+// import "./styles.css";
 //your JS code here. If required.
 function handelSubmit(event) {
   event.preventDefault();
   console.clear()
-	alert ("triggred")
   let name = document.getElementById("name").value;
   let age = document.getElementById("age").value;
   let msg = "";
