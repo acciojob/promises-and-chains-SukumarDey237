@@ -5,18 +5,48 @@ function handelSubmit(event) {
   console.clear()
   let name = document.getElementById("name").value;
   let age = document.getElementById("age").value;
-  let msg = "";
   const promise = new Promise((res, rej) => {
     setTimeout(() => {
       if (age > 18) {
-        msg = `Welcome, ${name} You can vote.`;
+        res(`Welcome, ${name} You can vote.`);
       } else {
-        msg = `Oh sorry ${name} You aren't old enough.`;
+        rej(`Oh sorry ${name} You aren't old enough.`);
       }
-      res(msg);
     }, 4000);
   });
-  promise.then((value) => alert(value));
+  promise.then((value) => alert(value)).catch((err)=>alert(err));
 }
 
 document.getElementById("form").addEventListener("submit", handelSubmit);
+
+
+// function handelSubmit(event) {
+//   event.preventDefault();
+//   console.clear();
+
+//   let name = document.getElementById("name").value;
+//   let age = document.getElementById("age").value;
+
+//   // Issue 2 Fix: Manual validation check with alert
+//   if (!name || !age) {
+//     alert("Please enter valid details.");
+//     return;
+//   }
+
+//   const promise = new Promise((res, rej) => {
+//     setTimeout(() => {
+//       if (age > 18) {
+//         res(`Welcome, ${name}. You can vote.`);   // ✅ resolve
+//       } else {
+//         rej(`Oh sorry ${name}. You aren't old enough.`); // ✅ reject
+//       }
+//     }, 4000);
+//   });
+
+//   // Issue 1 Fix: Chain .catch() to handle the rejection
+//   promise
+//     .then((value) => alert(value))
+//     .catch((error) => alert(error));
+// }
+
+// document.getElementById("form").addEventListener("submit", handelSubmit);
